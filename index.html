@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joshua Salim - Data Scientist</title>
+    <meta name="description" content="Joshua Salim - Data Scientist and AI Researcher from University of Florida with experience at Sprout Social">
+    <meta name="keywords" content="data science, machine learning, AI, Joshua Salim, University of Florida, Sprout Social">
+    <meta property="og:title" content="Joshua Salim - Data Scientist">
+    <meta property="og:description" content="Data Scientist at Sprout Social with expertise in AI and machine learning">
+    <meta property="og:url" content="https://joshuasalim.com">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+            animation: bgShift 20s ease-in-out infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(1deg) scale(1.02); }
+        }
+
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.3)); }
+            50% { filter: drop-shadow(0 0 40px rgba(102, 126, 234, 0.6)); }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 2rem;
+            color: #b0b0b0;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #d0d0d0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: #d0d0d0;
+            line-height: 1.8;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .skill-description {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: translateX(-50%);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 50%;
+        }
+
+        .experience-item:nth-child(odd) {
+            left: 0;
+            padding-right: 3rem;
+        }
+
+        .experience-item:nth-child(even) {
+            left: 50%;
+            padding-left: 3rem;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: 4px solid #0a0a0a;
+            border-radius: 50%;
+            top: 20px;
+        }
+
+        .experience-item:nth-child(odd)::before {
+            right: -11px;
+        }
+
+        .experience-item:nth-child(even)::before {
+            left: -11px;
+        }
+
+        .experience-content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .experience-content:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .experience-header {
+            margin-bottom: 1rem;
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .company {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .experience-description {
+            color: #d0d0d0;
+            line-height: 1.6;
+        }
+
+        /* Hobbies Section */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .hobby-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .hobby-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .hobby-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .hobby-description {
+            color: #b0b0b0;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            color: #ffffff;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            color: #667eea;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hobbies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-timeline::before {
+                display: none;
+            }
+
+            .experience-item {
+                width: 100%;
+                left: 0 !important;
+                padding: 0 !important;
+                margin-bottom: 2rem;
+            }
+
+            .experience-item::before {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .social-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Joshua Salim</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#hobbies">Hobbies</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Joshua Salim</h1>
+            <h2 class="hero-subtitle">Data Scientist & Analytics Expert</h2>
+            <p class="hero-description">
+                Data Science graduate from University of Florida, transforming data into actionable insights 
+                through cutting-edge machine learning and AI tools. From my days of academic research to my current job, 
+                I am passionate about solving complex problems using innovative data-driven solutions.
+            </p>
+            <div class="cta-buttons">
+                <a href="#experience" class="btn btn-primary">View My Experience</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    Graudating as a Data Science major from the University of Florida, I'm a passionate data guy with hands-on experience 
+                    in machine learning, AI research, product management, and data analytics. Currently, I work as a Data Scientist at 
+                    Sprout Social, where I leverage data to drive insights and enhance social media analytics for enterprise clients.
+                </p>
+                <p>
+                    I believe in maintaining a healthy work-life balance while staying curious about the latest 
+                    advances in AI and data science. I love basketball, fashion, and working out. I'm driven by the potential of data to solve business problems 
+                    and create meaningful impact across various industries.
+                </p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🤖</div>
+                    <h3 class="skill-title">Machine Learning</h3>
+                    <p class="skill-description">
+                        ML algorithms, NLP, Generative AI, Neural Networks, Predictive Modeling
+                    </p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <h3 class="skill-title">Data Analysis & Product Management</h3>
+                    <p class="skill-description">
+                        Statistical Analysis, Hypothesis Testing, A/B testing, Exploratory Data Analysis, Product Strategy
+                    </p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📈</div>
+                    <h3 class="skill-title">Data Visualization</h3>
+                    <p class="skill-description">
+                        Interactive dashboards, Tableau, storytelling with data, compelling visual narratives
+                    </p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚙️</div>
+                    <h3 class="skill-title">MLOps</h3>
+                    <p class="skill-description">
+                        Model Deployment, Monitoring, CI/CD pipelines, Scalable ML infrastructure
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="experience-timeline">
+            <div class="experience-item">
+                <div class="experience-content">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Data Scientist</h3>
+                        <span class="company">Sprout Social</span>
+                    </div>
+                    <p class="experience-description">
+                        Leveraging data science and machine learning to drive insights for social media analytics 
+                        and enhance product capabilities for enterprise clients.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-content">
+                    <div class="experience-header">
+                        <h3 class="experience-title">AI/Machine Learning Researcher</h3>
+                        <span class="company">UF Herbert Wertheim College of Engineering - SERMOS Lab</span>
+                    </div>
+                    <p class="experience-description">
+                        Conducted cutting-edge research in artificial intelligence and machine learning applications, 
+                        contributing to innovative solutions in the SERMOS research laboratory.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-content">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Teaching Assistant - Information & Database Systems</h3>
+                        <span class="company">UF Computer & Information Science & Engineering</span>
+                    </div>
+                    <p class="experience-description">
+                        Mentored students in database design, information systems, and data management concepts 
+                        while assisting with coursework and laboratory sessions.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-content">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Data & Product Intern</h3>
+                        <span class="company">Verified Athletics</span>
+                    </div>
+                    <p class="experience-description">
+                        Developed data-driven product insights and analytics solutions for sports technology platform, 
+                        enhancing user experience through data analysis and product optimization.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-content">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Research Assistant</h3>
+                        <span class="company">UF Sports Management Research</span>
+                    </div>
+                    <p class="experience-description">
+                        Supported research initiatives in sports management, applying data science methodologies 
+                        to analyze sports industry trends and performance metrics.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section class="section" id="hobbies">
+        <h2 class="section-title">My Hobbies & Interests</h2>
+        <div class="hobbies-grid">
+            <div class="hobby-card">
+                <div class="hobby-icon">💪</div>
+                <h3 class="hobby-title">Fitness & Gym</h3>
+                <p class="hobby-description">
+                    Passionate about maintaining physical health and pushing my personal limits. I enjoy strength training, 
+                    cardio workouts, and exploring new fitness challenges that keep me motivated and my body fit.
+                </p>
+            </div>
+            
+            <div class="hobby-card">
+                <div class="hobby-icon">👕</div>
+                <h3 class="hobby-title">Fashion</h3>
+                <p class="hobby-description">
+                    Staying up-to-date with the latest fashion trends and expressing personal style. I love exploring 
+                    different looks, discovering new brands, and using fashion as a means to express my personal creativity.
+                </p>
+            </div>
+            
+            <div class="hobby-card">
+                <div class="hobby-icon">🍵</div>
+                <h3 class="hobby-title">Matcha & Boba</h3>
+                <p class="hobby-description">
+                    Connoisseur of fine matcha and boba tea experiences. I enjoy trying different tea shops, 
+                    experimenting with flavors, and appreciating the craftsmanship behind the perfect cup.
+                </p>
+            </div>
+            
+            <div class="hobby-card">
+                <div class="hobby-icon">🏀</div>
+                <h3 class="hobby-title">Basketball</h3>
+                <p class="hobby-description">
+                    I love playing basketball and have played ever since I was 5 years old. Whether it's playing in a league, playing pickup, 
+                    or following the NBA, basketball brings out my competitive spirit, athleticism, and strategic thinking.
+                </p>
+            </div>
+            
+            <div class="hobby-card">
+                <div class="hobby-icon">🏈</div>
+                <h3 class="hobby-title">Fantasy Football</h3>
+                <p class="hobby-description">
+                    Fantasy football enthusiast who enjoys analyzing player statistics, predicting outcomes, 
+                    and competing in leagues. It combines my love for sports with data analysis and friendly but fun competition.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="contact">
+            <h2 class="section-title">Let's Connect</h2>
+            <p style="margin-bottom: 3rem; color: #d0d0d0; font-size: 1.1rem;">
+                Ready to collaborate on your next data science project? I'd love to hear from you!
+            </p>
+            <form class="contact-form" name="contact" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="contact" />
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/joshua-salim-ds/" class="social-link" target="_blank" rel="noopener" title="LinkedIn">💼</a>
+            <a href="https://instagram.com/joshuasalim3" class="social-link" target="_blank" rel="noopener" title="Instagram">📷</a>
+            <a href="https://github.com/joshuasalim7" class="social-link" target="_blank" rel="noopener" title="GitHub">🐙</a>
+            <a href="https://twitter.com/joshuasalim" class="social-link" target="_blank" rel="noopener" title="Twitter">🐦</a>
+            <a href="mailto:jsalim.js3@gmail.com" class="social-link" title="Email">📧</a>
+        </div>
+        <p>&copy; 2025 Joshua Salim. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 4 + 2;
+                const startPosition = Math.random() * window.innerWidth;
+                const animationDuration = Math.random() * 10 + 10;
+                const delay = Math.random() * 15;
+                
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = startPosition + 'px';
+                particle.style.animationDuration = animationDuration + 's';
+                particle.style.animationDelay = delay + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            // If not using Netlify forms, prevent default and show message
+            if (!this.hasAttribute('data-netlify')) {
+                e.preventDefault();
+                alert('Thank you for your message! I\'ll get back to you soon.');
+                this.reset();
+            }
+            // Otherwise, let Netlify handle the form submission
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.9)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.7)';
+            }
+        });
+
+        // Initialize particles when page loads
+        document.addEventListener('DOMContentLoaded', createParticles);
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px
